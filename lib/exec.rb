@@ -52,7 +52,7 @@ require 'byebug'
 
   while paid do
     if(bank_transfer == "Bank1")
-      puts "Remember you only can't exceed 1000 euros transfer and you have a comission of 0.5%"
+      puts "Remember you only can't exceed 1000 euros transfer and you have a comission of 5 euros"
       money_transfer.call
       bank1.accounts.push(jim_account)
       agent.make_transfer(bank1, jim_account, emma_account, money_trans.to_i)

@@ -11,7 +11,7 @@ describe Bank::InterTransfer do
     it 'should have correct data' do
       expect(transfer.sender).to eql(jim_account.owner)
       expect(transfer.receiver).to eql(emma_account.owner)
-      expect(transfer.money).to eql((1000 * Bank::InterTransfer::COMMISSION).to_i)
+      expect(transfer.money).to eql(1000 - 5)
     end
   end
 
