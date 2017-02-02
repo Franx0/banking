@@ -17,6 +17,14 @@ describe Bank::Agent do
 
       expect(bank_system.transfers.count).to eql(1)
     end
+
+    it 'should not create an intrabank transfer' do
+      jim_account = bank_system.add_account(Bank::Account.new(22000, jim_client.name)).first
+      emma_account = bank_system.add_account(Bank::Account.new(36000, emma_client.name)).first
+      #make a transfer
+
+      expect{ subject.make_transfer(bank_system, jim_account, emma_account, 30000) }.to raise_exception
+    end
   end
 
   context 'make a transfer between different banks system' do
@@ -33,6 +41,13 @@ describe Bank::Agent do
       emma_account = Bank::System.new.add_account(Bank::Account.new(36000, emma_client.name)).first
 
       expect{ subject.make_transfer(bank_system, jim_account, emma_account, 4000) }.to raise_error(RuntimeError, "Exceeded limit of 1000 euros, please make different transfers")
+    end
+
+    it 'should not create an interbank transfer and raise error' do
+      jim_account = bank_system.add_account(Bank::Account.new(300, jim_client.name)).first
+      emma_account = Bank::System.new.add_account(Bank::Account.new(36000, emma_client.name)).first
+
+      expect{ subject.make_transfer(bank_system, jim_account, emma_account, 1000) }.to raise_exception
     end
   end
 end

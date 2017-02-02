@@ -12,6 +12,8 @@ module Bank
             receiver.money += transfer.money
 
             return
+          else
+            raise Exception.new("You have got enough money in your account")
           end
         when 'InterBank'
           transfer = bank_system.add_transfer(Bank::InterTransfer.new(sender.owner, receiver.owner, money)).last
@@ -22,6 +24,8 @@ module Bank
             receiver.money += transfer.money
 
             return
+          else
+            raise Exception.new("You have got enough money in your account")
           end
         else
           raise "Error::InvalidSystem"
