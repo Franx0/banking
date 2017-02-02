@@ -26,11 +26,7 @@ Help Jim send his money by developing a transfer agent. This agent assures that 
 The banks keep a list of all transfers and can be asked for the history of transfers.
 
 ## Test
-    ````ruby
     $ rspec  
-    ````
 
 ## Demo
-    ````ruby
     $ ruby ./lib/exec
-    ````
